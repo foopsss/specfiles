@@ -7,6 +7,7 @@ BuildArch:      noarch
 License:        MIT
 URL:            https://gitlab.com/dwt1/shell-color-scripts.git
 Source0:        %{name}-%{version}.tar.gz
+Patch0:         shell-color-scripts.patch
 
 %description
 The following package provides a program, colorscript, that can display a colorscript from a collection of 50+ colorscripts.
@@ -14,10 +15,8 @@ The following package provides a program, colorscript, that can display a colors
 %prep
 %setup -q -n shell-color-scripts
 
-# Fixes for the colorscripts.sh, _colorscript and colorscript.fish files.
-sed -i 's!/opt/shell-color-scripts/colorscripts!/usr/lib64/shell-color-scripts/colorscripts!' colorscript.sh
-sed -i 's!/opt/shell-color-scripts/colorscripts!/usr/lib64/shell-color-scripts/colorscripts!' completions/_colorscript
-sed -i 's!/opt/shell-color-scripts/colorscripts!/usr/lib64/shell-color-scripts/colorscripts!' completions/colorscript.fish
+# Fixes for the colorscripts.sh, _colorscript, colorscript.fish and Makefile files.
+%patch0 -p2
 
 %install
 install -Dm755 completions/_colorscript %{buildroot}%{_datadir}/zsh/_colorscript
@@ -93,6 +92,9 @@ install -Dm644 colorscript.1 %{buildroot}%{_mandir}/man1/colorscript.1
 %{_mandir}/man1/colorscript.1*
 
 %changelog
+* Mon Dec 26 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+* Moved the sed fixes to a patch file. Also added a reworked makefile, but it still needs a prefix.
+
 * Sat Dec 24 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
 * Reduced the number of comments in the %prep section of the specfile.
 
