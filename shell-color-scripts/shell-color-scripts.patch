@@ -45,31 +45,24 @@ diff -ru GIT/shell-color-scripts/completions/colorscript.fish PATCHES/shell-colo
 Sólo en GIT/shell-color-scripts: LICENSE
 diff -ru GIT/shell-color-scripts/Makefile PATCHES/shell-color-scripts/Makefile
 --- GIT/shell-color-scripts/Makefile	2022-12-24 20:08:23.662040673 -0300
-+++ PATCHES/shell-color-scripts/Makefile	2022-12-24 21:10:24.884885813 -0300
-@@ -1,12 +1,16 @@
++++ PATCHES/shell-color-scripts/Makefile	2022-12-31 20:06:40.882503477 -0300
+@@ -1,12 +1,6 @@
 -clean: 
 -	rm -rf /opt/shell-color-scripts
-+clean:
-+	rm -rf /usr/lib64/shell-color-scripts
- 
+-
 -install: clean
 -	mkdir -p /opt/shell-color-scripts/colorscripts
 -	cp -rf colorscripts/* /opt/shell-color-scripts/colorscripts
 -	cp colorscript.sh /usr/local/bin/colorscript
+-
+-uninstall:
+-	rm -rf /opt/shell-color-scripts
+-	rm -f /usr/local/bin/colorscript
+-
 +install:
 +	install -Dm755 completions/_colorscript /usr/share/zsh/_colorscript
 +	install -Dm755 completions/colorscript.fish /usr/share/fish/vendor_completions.d/colorscript.fish
 +	install -Dm755 colorscripts/* -t /usr/lib64/shell-color-scripts/colorscripts
 +	install -Dm755 colorscript.sh /usr/bin/colorscript
 +	install -Dm644 colorscript.1 /usr/share/man/man1/colorscript.1
- 
- uninstall:
--	rm -rf /opt/shell-color-scripts
--	rm -f /usr/local/bin/colorscript
--
-+	rm -f /usr/share/zsh/_colorscript
-+	rm -f /usr/share/fish/vendor_completions.d/colorscript.fish
-+	rm -rf /usr/lib64/shell-color-scripts
-+	rm -f /usr/bin/colorscript
-+	rm -f /usr/share/man/man1/colorscript.1
 Sólo en GIT/shell-color-scripts: README.md

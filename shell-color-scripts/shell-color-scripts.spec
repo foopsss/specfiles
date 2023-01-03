@@ -5,25 +5,25 @@ Summary:        A CLI for the collection of terminal color scripts. Includes 50+
 BuildArch:      noarch
 
 License:        MIT
-URL:            https://gitlab.com/dwt1/shell-color-scripts.git
-Source0:        %{name}-%{version}.tar.gz
+URL:            https://gitlab.com/dwt1/shell-color-scripts
+Source0:        https://gitlab.com/dwt1/shell-color-scripts/-/archive/master/%{name}-master.tar.gz
 Patch0:         shell-color-scripts.patch
 
 %description
 The following package provides a program, colorscript, that can display a colorscript from a collection of 50+ colorscripts.
 
 %prep
-%setup -q -n shell-color-scripts
+%setup -q -n shell-color-scripts-master
 
 # Fixes for the colorscripts.sh, _colorscript, colorscript.fish and Makefile files.
 %patch0 -p2
 
 %install
-install -Dm755 completions/_colorscript %{buildroot}%{_datadir}/zsh/_colorscript
-install -Dm755 completions/colorscript.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/colorscript.fish
-install -Dm755 colorscripts/* -t %{buildroot}%{_libdir}/%{name}/colorscripts
-install -Dm755 colorscript.sh %{buildroot}%{_bindir}/colorscript
-install -Dm644 colorscript.1 %{buildroot}%{_mandir}/man1/colorscript.1
+install -Dm755 completions/_colorscript /usr/share/zsh/_colorscript
+install -Dm755 completions/colorscript.fish /usr/share/fish/vendor_completions.d/colorscript.fish
+install -Dm755 colorscripts/* -t /usr/lib64/shell-color-scripts/colorscripts
+install -Dm755 colorscript.sh /usr/bin/colorscript
+install -Dm644 colorscript.1 /usr/share/man/man1/colorscript.1
 
 %files
 %license LICENSE
@@ -92,17 +92,20 @@ install -Dm644 colorscript.1 %{buildroot}%{_mandir}/man1/colorscript.1
 %{_mandir}/man1/colorscript.1*
 
 %changelog
+* Sat Dec 31 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+- Changed the Source0 parameter to download the source from upstream instead of using a local file.
+
 * Mon Dec 26 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
-* Moved the sed fixes to a patch file. Also added a reworked makefile, but it still needs a prefix.
+- Moved the sed fixes to a patch file. Also added a reworked makefile, but it still needs a prefix.
 
 * Sat Dec 24 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
-* Reduced the number of comments in the %prep section of the specfile.
+- Reduced the number of comments in the %prep section of the specfile.
 
 * Thu Dec 22 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
-* Changes made to the specfile to suit the Fedora Packaging Guidelines.
+- Changes made to the specfile to suit the Fedora Packaging Guidelines.
 
 * Wed Dec 21 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
-* Changes made to the specfile to suit the Fedora Packaging Guidelines.
+- Changes made to the specfile to suit the Fedora Packaging Guidelines.
 
 * Thu Dec 15 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
 - First version being packaged.
