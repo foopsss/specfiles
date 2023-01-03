@@ -1,6 +1,6 @@
 Name:           shell-color-scripts
 Version:        1.1.r96.da2e3c5
-Release:        1%{?dist}
+Release:        7%{?dist}
 Summary:        A CLI for the collection of terminal color scripts. Includes 50+ beautiful terminal color scripts
 BuildArch:      noarch
 
@@ -88,23 +88,23 @@ The following package provides a program, colorscript, that can display a colors
 %{_mandir}/man1/colorscript.1*
 
 %changelog
-* Tue Jan 03 2023 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+* Tue Jan 03 2023 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5-7
 - Changed the install section to use the reworked makefile.
 
-* Sat Dec 31 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+* Sat Dec 31 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5-6
 - Changed the Source0 parameter to download the source from upstream instead of using a local file.
 
-* Mon Dec 26 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+* Mon Dec 26 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5-5
 - Moved the sed fixes to a patch file. Also added a reworked makefile, but it still needs a prefix.
 
-* Sat Dec 24 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+* Sat Dec 24 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5-4
 - Reduced the number of comments in the %prep section of the specfile.
 
-* Thu Dec 22 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+* Thu Dec 22 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5-3
 - Changes made to the specfile to suit the Fedora Packaging Guidelines.
 
-* Wed Dec 21 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+* Wed Dec 21 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5-2
 - Changes made to the specfile to suit the Fedora Packaging Guidelines.
 
-* Thu Dec 15 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+* Thu Dec 15 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5-1
 - First version being packaged.
