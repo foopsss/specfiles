@@ -19,11 +19,7 @@ The following package provides a program, colorscript, that can display a colors
 %patch0 -p2
 
 %install
-install -Dm755 completions/_colorscript /usr/share/zsh/_colorscript
-install -Dm755 completions/colorscript.fish /usr/share/fish/vendor_completions.d/colorscript.fish
-install -Dm755 colorscripts/* -t /usr/lib64/shell-color-scripts/colorscripts
-install -Dm755 colorscript.sh /usr/bin/colorscript
-install -Dm644 colorscript.1 /usr/share/man/man1/colorscript.1
+%make_install
 
 %files
 %license LICENSE
@@ -92,6 +88,9 @@ install -Dm644 colorscript.1 /usr/share/man/man1/colorscript.1
 %{_mandir}/man1/colorscript.1*
 
 %changelog
+* Tue Jan 03 2023 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
+- Changed the install section to use the reworked makefile.
+
 * Sat Dec 31 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
 - Changed the Source0 parameter to download the source from upstream instead of using a local file.
 
