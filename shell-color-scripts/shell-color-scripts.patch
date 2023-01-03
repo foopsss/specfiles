@@ -18,7 +18,7 @@ diff -ru GIT/shell-color-scripts/Makefile PATCHES/shell-color-scripts/Makefile
 +install:
 +	install -Dm755 completions/_colorscript ${DESTDIR}/usr/share/zsh/_colorscript
 +	install -Dm755 completions/colorscript.fish ${DESTDIR}/usr/share/fish/vendor_completions.d/colorscript.fish
-+	install -Dm755 colorscripts/* -t ${DESTDIR}/usr/lib64/shell-color-scripts/colorscripts
++	install -Dm755 colorscripts/* -t ${DESTDIR}/usr/libexec/shell-color-scripts/colorscripts
 +	install -Dm755 colorscript.sh ${DESTDIR}/usr/bin/colorscript
 +	install -Dm644 colorscript.1 ${DESTDIR}/usr/share/man/man1/colorscript.1
 Only in GIT/shell-color-scripts: README.md
@@ -31,7 +31,7 @@ diff -ru GIT/shell-color-scripts/colorscript.sh PATCHES/shell-color-scripts/colo
      DIR_COLORSCRIPTS="./colorscripts"
  else
 -    DIR_COLORSCRIPTS="/opt/shell-color-scripts/colorscripts"
-+    DIR_COLORSCRIPTS="/usr/lib64/shell-color-scripts/colorscripts"
++    DIR_COLORSCRIPTS="/usr/libexec/shell-color-scripts/colorscripts"
  fi
  
  if command -v find &>/dev/null; then
@@ -43,7 +43,7 @@ diff -ru GIT/shell-color-scripts/completions/_colorscript PATCHES/shell-color-sc
  #compdef colorscript
  
 -DIR_COLORSCRIPTS="/opt/shell-color-scripts/colorscripts"
-+DIR_COLORSCRIPTS="/usr/lib64/shell-color-scripts/colorscripts"
++DIR_COLORSCRIPTS="/usr/libexec/shell-color-scripts/colorscripts"
  if command -v find &>/dev/null; then
      LS_CMD="$(command -v find) ${DIR_COLORSCRIPTS} -maxdepth 1 -type f | xargs -I$ basename $"
  else
@@ -55,7 +55,7 @@ diff -ru GIT/shell-color-scripts/completions/colorscript.fish PATCHES/shell-colo
  # function
  
 -set dir_colorscripts "/opt/shell-color-scripts/colorscripts"
-+set dir_colorscripts "/usr/lib64/shell-color-scripts/colorscripts"
++set dir_colorscripts "/usr/libexec/shell-color-scripts/colorscripts"
  set dir_blacklisted_colorscripts "$dir_colorscripts/blacklisted"
  
  # Lists all filenames in a given directory
