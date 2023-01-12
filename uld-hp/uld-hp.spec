@@ -1,5 +1,5 @@
 Name:           uld-hp
-Version:        1.00.39.12_00.15
+Version:        V1.00.39.12_00.15
 Release:        1%{?dist}
 Summary:        Driver for HP Laser 100 and HP Color Laser 150 printer series.
 BuildArch:      noarch
