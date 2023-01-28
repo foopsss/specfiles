@@ -7,7 +7,9 @@ BuildArch:      noarch
 License:        MIT
 URL:            https://gitlab.com/dwt1/shell-color-scripts
 Source0:        https://gitlab.com/dwt1/shell-color-scripts/-/archive/master/%{name}-master.tar.gz
-Patch0:         shell-color-scripts.patch
+Patch0:         https://raw.githubusercontent.com/foopsss/Specfiles/main/shell-color-scripts/shell-color-scripts.patch
+
+BuildRequires:  make
 
 %description
 The following package provides a program, colorscript, that can display a colorscript from a collection of 50+ colorscripts. Includes completions for the Fish and Zsh shells.
