@@ -1,5 +1,5 @@
 Name:           shell-color-scripts
-Version:        1.1.r96.da2e3c5
+Version:        1.1.r112.2607a72
 Release:        1%{?dist}
 Summary:        A CLI for the collection of terminal color scripts. Includes 50+ beautiful terminal color scripts
 BuildArch:      noarch
@@ -33,6 +33,9 @@ The following package provides a program, colorscript, that can display a colors
 %{_mandir}/man1/colorscript.1*
 
 %changelog
+* Thu Mar 30 2023 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r112.2607a72
+- Update to 1.1.r112.2607a72.
+
 * Wed Dec 21 2022 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r96.da2e3c5
 - Added sed fixes to change the colorscripts' location and a reworked Makefile in a patch.
 - Changed the Source0 parameter to use the downloaded source from upstream instead of using a local file.
