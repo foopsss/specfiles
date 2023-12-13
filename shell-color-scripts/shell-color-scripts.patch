@@ -16,6 +16,7 @@ diff -ru GIT/shell-color-scripts/Makefile PATCHES/shell-color-scripts/Makefile
 -	rm -f /usr/local/bin/colorscript
 -
 +install:
++	mkdir -p ${DESTDIR}/usr/libexec/shell-color-scripts/colorscripts
 +	install -Dm755 completions/_colorscript ${DESTDIR}/usr/share/zsh/_colorscript
 +	install -Dm755 completions/colorscript.fish ${DESTDIR}/usr/share/fish/vendor_completions.d/colorscript.fish
 +	install -Dm755 colorscripts/* -t ${DESTDIR}/usr/libexec/shell-color-scripts/colorscripts
