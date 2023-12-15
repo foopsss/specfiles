@@ -18,7 +18,7 @@ The following package provides a program, colorscript, that can display a colors
 %setup -q -n shell-color-scripts-master
 
 # Fixes for the colorscripts.sh, _colorscript, colorscript.fish and Makefile files.
-%patch -p1 0
+%patch -P0 -p1
 
 %install
 %make_install
