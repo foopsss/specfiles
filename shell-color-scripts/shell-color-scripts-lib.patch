@@ -1,0 +1,65 @@
+diff -ru shell-color-scripts-master/colorscript.sh shell-color-scripts-patch/colorscript.sh
+--- shell-color-scripts-master/colorscript.sh	2023-03-27 20:28:41.000000000 -0300
++++ shell-color-scripts-patch/colorscript.sh	2023-12-12 23:18:49.673378248 -0300
+@@ -5,7 +5,7 @@
+ if [[ "$DEV" -gt 0 ]]; then
+     DIR_COLORSCRIPTS="./colorscripts"
+ else
+-    DIR_COLORSCRIPTS="/opt/shell-color-scripts/colorscripts"
++    DIR_COLORSCRIPTS="/usr/lib/shell-color-scripts/colorscripts"
+ fi
+ 
+ if command -v find &>/dev/null; then
+diff -ru shell-color-scripts-master/completions/_colorscript shell-color-scripts-patch/completions/_colorscript
+--- shell-color-scripts-master/completions/_colorscript	2023-03-27 20:28:41.000000000 -0300
++++ shell-color-scripts-patch/completions/_colorscript	2023-12-12 23:20:25.240047827 -0300
+@@ -1,6 +1,6 @@
+ #compdef colorscript
+ 
+-DIR_COLORSCRIPTS="/opt/shell-color-scripts/colorscripts"
++DIR_COLORSCRIPTS="/usr/lib/shell-color-scripts/colorscripts"
+ if command -v find &>/dev/null; then
+     LS_CMD="$(command -v find) ${DIR_COLORSCRIPTS} -maxdepth 1 -type f | xargs -I$ basename $"
+ else
+diff -ru shell-color-scripts-master/completions/colorscript.fish shell-color-scripts-patch/completions/colorscript.fish
+--- shell-color-scripts-master/completions/colorscript.fish	2023-03-27 20:28:41.000000000 -0300
++++ shell-color-scripts-patch/completions/colorscript.fish	2023-12-12 23:20:41.483381661 -0300
+@@ -3,7 +3,7 @@
+ # according to https://fishshell.com/docs/current/completions.html
+ # function
+ 
+-set dir_colorscripts "/opt/shell-color-scripts/colorscripts"
++set dir_colorscripts "/usr/lib/shell-color-scripts/colorscripts"
+ set dir_blacklisted_colorscripts "$dir_colorscripts/blacklisted"
+ 
+ # Lists all filenames in a given directory
+@@ -75,4 +75,4 @@
+ 
+ # Blacklisted colorscript name autocompletions
+ set -l commands_that_take_blacklisted_names -u --unblacklist unblacklist
+-complete -c colorscript -n "__fish_seen_subcommand_from $commands_that_take_blacklisted_names" -a '(blacklisted_cs_names)'
+\ No newline at end of file
++complete -c colorscript -n "__fish_seen_subcommand_from $commands_that_take_blacklisted_names" -a '(blacklisted_cs_names)'
+diff -ru shell-color-scripts-master/Makefile shell-color-scripts-patch/Makefile
+--- shell-color-scripts-master/Makefile	2023-03-27 20:28:41.000000000 -0300
++++ shell-color-scripts-patch/Makefile	2023-12-12 23:17:38.620042761 -0300
+@@ -1,12 +1,7 @@
+-clean: 
+-	rm -rf /opt/shell-color-scripts
+-
+-install: clean
+-	mkdir -p /opt/shell-color-scripts/colorscripts
+-	cp -rf colorscripts/* /opt/shell-color-scripts/colorscripts
+-	cp colorscript.sh /usr/local/bin/colorscript
+-
+-uninstall:
+-	rm -rf /opt/shell-color-scripts
+-	rm -f /usr/local/bin/colorscript
+-
++install:
++	mkdir -p ${DESTDIR}/usr/lib/shell-color-scripts/colorscripts
++	install -Dm755 completions/_colorscript ${DESTDIR}/usr/share/zsh/_colorscript
++	install -Dm755 completions/colorscript.fish ${DESTDIR}/usr/share/fish/vendor_completions.d/colorscript.fish
++	install -Dm755 colorscripts/* -t ${DESTDIR}/usr/lib/shell-color-scripts/colorscripts
++	install -Dm755 colorscript.sh ${DESTDIR}/usr/bin/colorscript
++	install -Dm644 colorscript.1 ${DESTDIR}/usr/share/man/man1/colorscript.1

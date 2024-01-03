@@ -7,7 +7,8 @@ BuildArch:      noarch
 License:        MIT
 URL:            https://gitlab.com/dwt1/shell-color-scripts
 Source0:        https://gitlab.com/dwt1/shell-color-scripts/-/archive/master/%{name}-master.tar.gz
-Patch0:         https://raw.githubusercontent.com/foopsss/specfiles/main/shell-color-scripts/shell-color-scripts.patch
+Patch0:         https://raw.githubusercontent.com/foopsss/specfiles/main/shell-color-scripts/shell-color-scripts-lib.patch
+Patch1:         https://raw.githubusercontent.com/foopsss/specfiles/main/shell-color-scripts/shell-color-scripts-libexec.patch
 
 BuildRequires:  make
 
@@ -18,7 +19,18 @@ The following package provides a program, colorscript, that can display a colors
 %setup -q -n shell-color-scripts-master
 
 # Fixes for the colorscripts.sh, _colorscript, colorscript.fish and Makefile files.
+# These are just changes to the installation paths, since I can't use /opt on Fedora
+# if I want to adhere to the packaging guidelines. They are not required on SUSE
+# but it's easier for me to stick to them.
+
+# Current openSUSE Leap versions don't expand the %{_libexecdir} macro to libexec.
+# For that, I'm carrying a patch specifically for Leap, while Tumbleweed and Fedora
+# use libexec just fine.
+%if 0%{?sle_version}
 %patch -P0 -p1
+%else
+%patch -P1 -p1
+%endif
 
 %install
 %make_install
@@ -33,6 +45,9 @@ The following package provides a program, colorscript, that can display a colors
 %{_mandir}/man1/colorscript.1*
 
 %changelog
+* Thu Dec 14 2023 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r112.2607a72
+- Added support for openSUSE Leap.
+
 * Thu Mar 30 2023 Lucas <46837214+foopsss@users.noreply.github.com> - 1.1.r112.2607a72
 - Update to 1.1.r112.2607a72.
 
